@@ -2,8 +2,6 @@
 Data Ingestion. Databricks Lakehouse
 
 
-Sure, let's go through examples of how to use TensorFlow and PyTorch with Parquet files. Parquet is a columnar storage file format that is widely used in big data frameworks like Apache Spark and Hadoop. It is efficient for both storage and query performance.
-
 ### Using TensorFlow with Parquet Files
 
 First, ensure you have the necessary libraries installed:
@@ -118,4 +116,4 @@ for epoch in range(10):  # number of epochs
 
 ### Conclusion
 
-Both TensorFlow and PyTorch can efficiently work with Parquet files by using `pandas` to handle the file reading and then converting the DataFrame into datasets compatible with each framework. This allows for easy integration of big data storage formats with deep learning frameworks. If you have any specific requirements or need further customization, feel free to ask!
+Both TensorFlow and PyTorch can efficiently work with Parquet files by using `pandas` to handle the file reading and then converting the DataFrame into datasets compatible with each framework. This allows for easy integration of big data storage formats with deep learning frameworks. 
