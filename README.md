@@ -195,14 +195,7 @@ sequenceDiagram
    - Azure Databricks is set up to listen for events from Azure Event Hub. 
    - When a message is received, a notebook in Databricks is triggered to start processing the file.
    - The notebook reads the file from the Azure Storage Container, processes it (e.g., data transformation, cleaning), and prepares it for storage.
-
-7. **Azure SQL Database**:
-   - The final step involves storing the processed data into an Azure SQL Database. This allows the data to be queried, analyzed, or used in reports and dashboards.
-
-
-### **Azure Databricks Notebook Script**
-
-#### **1. Import Required Libraries**
+  #### **1. Import Required Libraries**
 ```python
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
@@ -274,6 +267,11 @@ df_processed = (
     .withColumnRenamed("count", "event_count")
 )
 ```
+
+7. **Azure SQL Database**:
+   - The final step involves storing the processed data into an Azure SQL Database. This allows the data to be queried, analyzed, or used in reports and dashboards.
+
+
 
 #### **6. Write the Processed Data to Azure SQL Database**
 Set up a connection to Azure SQL Database and write the processed data.
