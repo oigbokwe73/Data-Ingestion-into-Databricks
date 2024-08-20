@@ -1,4 +1,4 @@
-# Data-Ingestion-into-Databricks - Azure SQL
+    # Data-Ingestion-into-Databricks - Azure SQL
 Data Ingestion. Databricks Lakehouse
 
 ```mermaid
@@ -8,6 +8,7 @@ sequenceDiagram
     participant BlobStorage as Azure Storage Container
     participant Func as Azure Function (Blob Trigger)
     participant EventHub as Azure Event Hub
+    participant Producer as Event Producers
     participant Databricks as Azure Databricks
     participant SQL as Azure SQL Database
 
@@ -15,10 +16,12 @@ sequenceDiagram
     FileShare->>BlobStorage: Move/Copy file to Azure Storage Container
     BlobStorage->>Func: Blob created event triggers Azure Function
     Func->>EventHub: Send event/message to Azure Event Hub
-    EventHub->>Databricks: Trigger Databricks notebook via Event Hub
-    Databricks->>BlobStorage: Read file from Azure Storage Container
-    Databricks->>Databricks: Process file data
-    Databricks->>SQL: Write processed data to Azure SQL Database
+   Producer->>EventHub: Send events
+    loop Streaming Data
+        EventHub->>Databricks: Stream data (using Event Hub Connector)
+        Databricks->>Databricks: Process data (transformations, aggregations)
+        Databricks->>SQLDB: Write processed data
+    end   Databricks->>SQL: Write processed data to Azure SQL Database
 ```
 
 - **SFTP Server**: A source that provides files.
