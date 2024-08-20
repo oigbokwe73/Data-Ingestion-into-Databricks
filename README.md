@@ -16,12 +16,11 @@ sequenceDiagram
     FileShare->>BlobStorage: Move/Copy file to Azure Storage Container
     BlobStorage->>Func: Blob created event triggers Azure Function
     Func->>EventHub: Send event/message to Azure Event Hub
-   Producer->>EventHub: Send events
     loop Streaming Data
         EventHub->>Databricks: Stream data (using Event Hub Connector)
         Databricks->>Databricks: Process data (transformations, aggregations)
-        Databricks->>SQLDB: Write processed data
-    end   Databricks->>SQL: Write processed data to Azure SQL Database
+        Databricks->>SQL: Write processed data to Azure SQL Database
+    end   
 ```
 
 - **SFTP Server**: A source that provides files.
